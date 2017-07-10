@@ -21,16 +21,16 @@
              
             <p:panelGrid columns="3" style="border-bottom-width: 0px;">
                 <h:outputText value="FirstName:"/>
-                <p:inputText value="#{userBean.user.firstName}" id="firstname" required="true" requiredMessage="FirstName is required">
-                    <f:validateLength  maximum="20"  /> 
+                <p:inputText value="#{userBean.user.firstName}" id="firstname" required="true"  requiredMessage="FirstName is required">
+                    <f:validateRegex pattern="[A-Z]{1}[a-z]{1,10}" />
                 </p:inputText>
                 <h:message for="firstname" style="color:green" />
                 
                 <h:outputText value="LastName:"/>
                 <p:inputText value="#{userBean.user.lastName}" id="lastname" required="true" requiredMessage="LastName is required"> 
-                    <f:validateLength  maximum="20"  /> 
+                    <f:validateRegex pattern="[A-Z]{1}[a-z]{1,10}" />
                 </p:inputText>
-                <h:message for="lastname" style="color:green" />
+                <h:message for="lastname" style="color:red" />
                 
                 <h:outputText value="Login:"/>
                 <p:inputText value="#{userBean.user.username}" id="username" required="true" requiredMessage="Login is required" >
