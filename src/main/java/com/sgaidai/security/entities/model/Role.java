@@ -1,5 +1,5 @@
 package com.sgaidai.security.entities.model;
-// Generated May 31, 2017 3:23:15 PM by Hibernate Tools 4.3.1
+
 
 
 import javax.persistence.Column;
@@ -10,6 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @RRay
@@ -19,52 +24,31 @@ import javax.persistence.UniqueConstraint;
     ,catalog="testing",uniqueConstraints = @UniqueConstraint(
 		columnNames = { "user_id", "role" })        
 )
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Role  implements java.io.Serializable {
 
-
-     private int roleId;     
-     private String role;
-     private User user;
-
-    public Role() {
-    }
-
-    public Role(int roleId, User user, String role) {
-       this.roleId = roleId;
-       this.user = user;
-       this.role = role;
-    }
-   
-     @Id 
     
+
+    @Id 
     @Column(name="role_id", unique=true, nullable=false)
-    public int getRoleId() {
-        return this.roleId;
-    }
-    
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
-@ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="user_id", nullable=false)
-    public User getUser() {
-        return this.user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
-
+    private int roleId;  
     
     @Column(name="role", nullable=false, length=45)
-    public String getRole() {
-        return this.role;
-    }
+    private String role;
     
-    public void setRole(String role) {
-        this.role = role;
-    }
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="user_id", nullable=false)
+    private User user;
+
+   
+    
+
+   
+
+  
 
 @Override
     public String toString() {
@@ -74,7 +58,4 @@ public class Role  implements java.io.Serializable {
     + "\n\t Role:- " + this.role;
     }
 
-
 }
-
-

@@ -1,7 +1,6 @@
 package com.sgaidai.security.entities.model;
-// Generated May 31, 2017 3:23:15 PM by Hibernate Tools 4.3.1
 
-
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -12,118 +11,53 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-/**
- * @RRay
- */
+
+
+
+
+
 @Entity        
 @Table(name="user"
     ,catalog="testing",uniqueConstraints = @UniqueConstraint(
 		columnNames = {"user_name","password" })        
 )
+@ToString
+@Getter
+@Setter
+public class User  implements Serializable {
 
-public class User  implements java.io.Serializable {
-
-
-     private int userId;
-     private String firstName;
-     private String lastName;
-     private String email;
-     private String username;
-     private String password;
-     private Boolean enabled; 
-
-   
-    
-     
-     private Set<Role> roles = new HashSet<Role>(0);
-
-   
-     @Id 
-    
+    @Id 
     @Column(name="user_id", unique=true, nullable=false)
-    public int getUserId() {
-        return this.userId;
-    }
-    
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
+    private int userId;
     
     @Column(name="first_name", nullable=false, length=50)
-    public String getFirstName() {
-        return this.firstName;
-    }
-    
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
+    private String firstName;
     
     @Column(name="last_name", nullable=false, length=50)
-    public String getLastName() {
-        return this.lastName;
-    }
-    
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
+    private String lastName;
     
     @Column(name="email", nullable=false, length=50)
-    public String getEmail() {
-        return this.email;
-    }
-    
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    private String email;
     
     @Column(name="user_name", nullable=false, length=50)
-   public String getUsername() {
-		return this.username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-     @Column(name="enabled", nullable=false)   
-    public Boolean getEnabled() {
-        return true;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
+    private String username;
     
     @Column(name="password", nullable=false, length=100)
-    public String getPassword() {
-        return this.password;
-    }
+    private String password;
     
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @Column(name="enabled", nullable=false)  
+    private Boolean enabled; 
+    
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER, mappedBy="user")
+    private Set<Role> roles = new HashSet<Role>(0);
 
-    
-    
-    
-    
-    
- @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER, mappedBy="user")
-    public Set<Role> getRoles() {
-        return this.roles;
-    }
-    
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-    
-    
-
+ 
 public void reset(){
         this.userId = 0;
         this.firstName ="";
@@ -134,23 +68,7 @@ public void reset(){
         this.roles = null;
         this.enabled= true;
         
-    }
-
-    
-     //This method writes the values of contact object with System.out.println(user.toString()) code
-    @Override
-    public String toString() {
-    return "User is :-"
-    + "\n\t FirstName:- " + this.firstName 
-    + "\n\t LastName:- " + this.lastName  
-    + "\n\t UserName:- " + this.username
-    + "\n\t Email:- " + this.email           
-    + "\n\t Password:- " + this.password
-    +"\n\t Authority:- " + this.getRoles();
-    }
-
-
-
+    }   
 }
 
 

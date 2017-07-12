@@ -17,7 +17,6 @@ import com.sgaidai.security.service.UserService;
 import javax.inject.Named;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Component;
 
 
 

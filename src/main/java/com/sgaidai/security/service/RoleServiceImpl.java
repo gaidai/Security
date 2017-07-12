@@ -8,10 +8,8 @@ import com.sgaidai.security.entities.model.Role;
 import com.sgaidai.springdatajpa.dao.repositories.RoleRepository;
 import com.sgaidai.springdatajpa.exception.UserRoleNotFoundException;
 
-/**
- *
- * @author Raichand
- */
+
+
 @Service
 public class RoleServiceImpl implements RoleService{
     
